@@ -9,7 +9,7 @@ export default function () {
     "X-Algolia-Application-Id": algoliaConfig.appID,
   };
 
-  this.nuxt.hook("render:setupServerMiddleware", (app) => {
+  this.nuxt.hook("render:setupMiddleware", (app) => {
     app.use('/api/user', getUserRoute);
   });
 
