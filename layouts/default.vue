@@ -2,7 +2,9 @@
   <div class="app">
     <header class="app-header">
       <div class="app-logo">
-        <img src="/images/logo.svg" />
+        <nuxt-link :to="`/`">
+          <img src="/images/logo.svg" />
+        </nuxt-link>
       </div>
       <div class="app-search">
         <input

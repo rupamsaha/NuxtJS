@@ -16,8 +16,16 @@ export default {
         prefetchLinks: false
     },
     plugins: ['~/plugins/maps.client', '~/plugins/dataApi', '~/plugins/auth.client'],
-    modules: ['~/modules/auth', '~/modules/algolia'],
-    buildModules: ['@nuxtjs/tailwindcss'],
+    modules: ['~/modules/auth', '~/modules/algolia', '~/modules/cloudinary', '@nuxtjs/cloudinary'], 
+    buildModules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
+    cloudinary: {
+        cloudName: 'ruri2910',
+    },
+    image: {
+        cloudinary: {
+          baseURL: 'https://res.cloudinary.com/ruri2910/image/upload/'
+        }
+    },
     css: ['~/assets/sass/app.scss'],
     build: {
         extractCSS: true,
@@ -32,13 +40,19 @@ export default {
         },
         algolia: {  
             appID: "BWH88H6F6O",
-            key: "",
+            key: "3db055b3104e4c5f4c2aaa13c9a6ab06",
+        },
+        cloudinary: {
+            apiKey: '577171994417629',
         }
     },
     privateRuntimeConfig : {
         algolia: {
             appID: "BWH88H6F6O",
-            key: "",
+            key: "a2deb0a3f2ea619deaeb8f3729fdffc2",
         },
+        cloudinary: {
+            apiSecret: 'QhQnUtgtWTjm2u3rLlLhgxYZzPk'
+        }
     }
 }
