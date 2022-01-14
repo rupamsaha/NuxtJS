@@ -34,6 +34,7 @@ export default {
         }
     },
     publicRuntimeConfig: {
+        rootUrl: process.env.NODE_ENV === 'production' ? 'https://ruri-bnb.vercel.app/' : 'http://localhost:3000',
         auth: {
             cookieName: 'idToken',
             clientId: '102392009144-h5ai2eg0t597vlkq83k1bbdo78tivs1m.apps.googleusercontent.com',
