@@ -40,19 +40,19 @@ export default {
         },
         algolia: {  
             appID: "BWH88H6F6O",
-            key: "",
+            key: process.env.ALGOLIA_PUBLIC_API_KEY,
         },
         cloudinary: {
-            apiKey: '577171994417629',
+            apiKey: process.env.CLOUDONARY_API_KEY,
         }
     },
     privateRuntimeConfig : {
         algolia: {
             appID: "BWH88H6F6O",
-            key: "",
+            key: process.env.ALGOLIA_PRIVATE_API_KEY,
         },
         cloudinary: {
-            apiSecret: ''
+            apiSecret: process.env.CLOUDONARY_API_SECRET
         }
     }
 }
