@@ -19,11 +19,11 @@ export default {
     modules: ['~/modules/auth', '~/modules/algolia', '~/modules/cloudinary', '@nuxtjs/cloudinary'], 
     buildModules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
     cloudinary: {
-        cloudName: 'ruri2910',
+        cloudName: 'dhdzvmgot',
     },
     image: {
         cloudinary: {
-          baseURL: 'https://res.cloudinary.com/ruri2910/image/upload/'
+          baseURL: 'https://res.cloudinary.com/dhdzvmgot/image/upload/'
         }
     },
     css: ['~/assets/sass/app.scss'],

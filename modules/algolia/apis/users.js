@@ -11,8 +11,9 @@ export default (algoliaConfig) => {
         payload.homeId = homes
         this.create(identity, payload)
     },
-    assignHome: async (identity, homeId) => {
-        const payload = (await this.getById(identity)).JSON
+    assignHome: async function (identity, homeId) {
+        const payload = (await this.getById(identity)).json
+
         payload.homeId.push(homeId)
         this.create(identity, payload)
     },

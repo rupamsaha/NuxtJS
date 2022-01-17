@@ -14,7 +14,7 @@ export default {
       const fileName = file.name.split(".").slice(0, -1).join(".") + Date.now();
 
       const options = {
-        temestamp: Date.now(),
+        timestamp: Date.now(),
         public_id: fileName,
       };
 

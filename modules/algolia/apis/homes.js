@@ -5,9 +5,9 @@ import { unwrap, getErrorResponse } from "../../../utils/fetchUtils";
 export default (algoliaConfig) => {
   const headers = getHeaders(algoliaConfig);
   return {
-    delete: async (homeId, payload) => {
+    delete: async (homeId) => {
         try {
-            return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/homes/${homeId}`, {
+            return unwrap(await fetch(`https://${algoliaConfig.appID}-dsn.algolia.net/1/indexes/homes/${homeId}`, {
                 headers,
                 method: 'DELETE',                    
             }))
@@ -35,7 +35,7 @@ export default (algoliaConfig) => {
       try {
         return unwrap(
           await fetch(
-            `https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/homes/query`,
+            `https://${algoliaConfig.appID}-dsn.algolia.net/1/indexes/homes/query`,
             {
               headers,
               method: "POST",

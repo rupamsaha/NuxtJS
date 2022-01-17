@@ -8,17 +8,12 @@
     </span>
     <h2 class="text-xl bold">Add a Home</h2>
     <form class="form" @submit.prevent="onSubmit">
-      <ImageUploader @file-upoloaded="imageUploaded($event, 0)" />
-      <ImageUploader @file-upoloaded="imageUploaded($event, 0)" />
-      <ImageUploader @file-upoloaded="imageUploaded($event, 0)" />
-      <ImageUploader @file-upoloaded="imageUploaded($event, 0)" />
-      <ImageUploader @file-upoloaded="imageUploaded($event, 0)" />
       Images:<br />
-      <input type="text" v-model="home.images[0]" class="1-3/4" /><br />
-      <input type="text" v-model="home.images[1]" class="1-3/4" /><br />
-      <input type="text" v-model="home.images[2]" class="1-3/4" /><br />
-      <input type="text" v-model="home.images[3]" class="1-3/4" /><br />
-      <input type="text" v-model="home.images[4]" class="1-3/4" /><br />
+      <ImageUploader @file-uploaded="imageUploaded($event, 0)" />
+      <ImageUploader @file-uploaded="imageUploaded($event, 1)" />
+      <ImageUploader @file-uploaded="imageUploaded($event, 2)" />
+      <ImageUploader @file-uploaded="imageUploaded($event, 3)" />
+      <ImageUploader @file-uploaded="imageUploaded($event, 4)" />
       Title:<br />
       <input type="text" v-model="home.title" class="w-60" /><br />
       Description<br />
@@ -157,7 +152,7 @@ export default {
       this.homeList = (await unwrap(await fetch("/api/homes/user/"))).json;
     },
     imageUploaded(imageUrl, index) {
-      this.home.image[index] = imageUrl;
+      this.home.images[index] = imageUrl;
     },
     getAddressPart(parts, type) {
       return parts.find((part) => part.types.includes(type));
