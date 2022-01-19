@@ -1,4 +1,4 @@
-# Project Title
+# Mastering NuxtJS
 
 An AirBnB replica using NuxtJS
 
