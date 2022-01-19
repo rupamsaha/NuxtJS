@@ -15,54 +15,54 @@
       <ImageUploader @file-uploaded="imageUploaded($event, 3)" />
       <ImageUploader @file-uploaded="imageUploaded($event, 4)" />
       Title:<br />
-      <input type="text" v-model="home.title" class="w-60" /><br />
+      <input v-model="home.title" type="text" class="w-60" /><br />
       Description<br />
-      <textarea v-model="home.description" class="w-104"></textarea><br />
+      <textarea v-model="home.description" class="w-104" /><br />
       Note<br />
-      <textarea v-model="home.note" class="w-104"></textarea><br />
+      <textarea v-model="home.note" class="w-104" /><br />
       Features<br />
-      <input type="text" v-model="home.features[0]" class="w-26" />
-      <input type="text" v-model="home.features[1]" class="w-26" />
-      <input type="text" v-model="home.features[2]" class="w-26" />
-      <input type="text" v-model="home.features[3]" class="w-26" />
-      <input type="text" v-model="home.features[4]" class="w-26" /><br />
+      <input v-model="home.features[0]" type="text" class="w-26" />
+      <input v-model="home.features[1]" type="text" class="w-26" />
+      <input v-model="home.features[2]" type="text" class="w-26" />
+      <input v-model="home.features[3]" type="text" class="w-26" />
+      <input v-model="home.features[4]" type="text" class="w-26" /><br />
       Price Per Night<br />
-      <input type="number" v-model="home.pricePerNight" class="w-14" /><br />
+      <input v-model="home.pricePerNight" type="number" class="w-14" /><br />
       Guests / Rooms / Beds / Baths<br />
-      <input type="number" v-model="home.guests" class="w-14" />
-      <input type="number" v-model="home.bedrooms" class="w-14" />
-      <input type="number" v-model="home.beds" class="w-14" />
-      <input type="number" v-model="home.bathrooms" class="w-14" /><br />
+      <input v-model="home.guests" type="number" class="w-14" />
+      <input v-model="home.bedrooms" type="number" class="w-14" />
+      <input v-model="home.beds" type="number" class="w-14" />
+      <input v-model="home.bathrooms" type="number" class="w-14" /><br />
       <input
-        type="text"
         ref="LocationSelector"
+        type="text"
         autocomplete="off"
         placeholder="Select a Location"
         @changed="changed"
       /><br />
       Address:
-      <input type="text" v-model="home.location.address" class="w-60" /><br />
+      <input v-model="home.location.address" type="text" class="w-60" /><br />
       City:
-      <input type="text" v-model="home.location.city" class="w-26" /><br />
+      <input v-model="home.location.city" type="text" class="w-26" /><br />
       State:
-      <input type="text" v-model="home.location.state" class="w-26" /><br />
+      <input v-model="home.location.state" type="text" class="w-26" /><br />
       Postal Code:
       <input
-        type="text"
         v-model="home.location.postalCode"
+        type="text"
         class="w-26"
       /><br />
       Country:
-      <input type="text" v-model="home.location.country" class="w-26" /><br />
+      <input v-model="home.location.country" type="text" class="w-26" /><br />
       <date-picker
         v-for="(range, index) in home.availabilityRanges"
         :key="index"
         v-model="home.availabilityRanges[index]"
         is-range
         timezone="UTC"
-        :modelConfig="{ timeAdjust: '00:00:00' }"
+        :model-config="{ timeAdjust: '00:00:00' }"
       >
-        <template v-slot="{ inputValue, inputEvents }">
+        <template #default="{ inputValue, inputEvents }">
           <input :value="inputValue.start" v-on="inputEvents.start" />
           to
           <input :value="inputValue.end" v-on="inputEvents.end" /><br />
@@ -127,8 +127,8 @@ export default {
       const route =
         this.getAddressPart(addressParts, "route")?.short_name || "";
 
-      this.home.location.address = street + " " + route;
-      this.home.location.city = street + " " + route;
+      this.home.location.address = `${street} ${route}`;
+      this.home.location.city = `${street} ${route}`;
       this.home.location.state =
         this.getAddressPart(addressParts, "administrative_area_level_1")
           ?.long_name || "";

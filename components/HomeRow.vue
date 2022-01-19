@@ -16,9 +16,10 @@
       </div>
       <div class="app-amenities">
         <p>
-          {{ pluralize(home.guests, 'guest') }}, {{ pluralize(home.bedrooms, 'room') }},
-          {{ pluralize(home.beds, 'bed') }},
-          {{ pluralize(home.bathrooms, 'bath') }}
+          {{ pluralize(home.guests, "guest") }},
+          {{ pluralize(home.bedrooms, "room") }},
+          {{ pluralize(home.beds, "bed") }},
+          {{ pluralize(home.bathrooms, "bath") }}
         </p>
         <p>{{ features }}</p>
       </div>
@@ -27,13 +28,16 @@
           {{ home.reviewValue }}
           <span>({{ home.reviewCount }})</span>
         </div>
-        <div class="app-price">${{ home.pricePerNight }}<span>/ night</span></div>
+        <div class="app-price">
+          ${{ home.pricePerNight }}<span>/ night</span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import pluralize from '~/utils/pluralize'
+import pluralize from "~/utils/pluralize";
+
 export default {
   props: {
     home: {
@@ -43,11 +47,11 @@ export default {
   },
   computed: {
     features() {
-      return this.home.features.slice(0, 3).join(', ')
+      return this.home.features.slice(0, 3).join(", ");
     },
   },
   methods: {
     pluralize,
   },
-}
+};
 </script>

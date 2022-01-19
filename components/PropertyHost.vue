@@ -8,17 +8,15 @@
             {{ user.name }}
           </div>
           <div class="app-host-date">
-              Joined in {{shortDate(user.joined)}}
+            Joined in {{ shortDate(user.joined) }}
           </div>
           <div class="app-flex">
-              <div class="app-host-reviews">
-                  {{ user.reviewCount }} reviews
-              </div>
+            <div class="app-host-reviews">{{ user.reviewCount }} reviews</div>
           </div>
         </div>
       </div>
       <div class="app-host-description">
-          {{ user.description}}
+        {{ user.description }}
       </div>
     </div>
   </div>
@@ -34,7 +32,7 @@ export default {
     },
   },
   methods: {
-      shortDate,
-  }
+    shortDate,
+  },
 };
 </script>

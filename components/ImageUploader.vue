@@ -10,7 +10,9 @@ export default {
   methods: {
     async uploadFile(event) {
       const file = event.target.files[0];
-      if (!file) return;
+      if (!file) {
+        return;
+      }
       const fileName = file.name.split(".").slice(0, -1).join(".") + Date.now();
 
       const options = {
@@ -27,21 +29,22 @@ export default {
           },
         })
       );
-      const signature = response.json.signature
-      const readData = (fileObj) => new Promise((resolve) => {
-          const reader = new FileReader()
-          reader.onloadend = () => resolve(reader.result)
-          reader.readAsDataURL(fileObj)
-      })
+      const { signature } = response.json;
+      const readData = (fileObj) =>
+        new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(fileObj);
+        });
 
-      const data = await readData(file)
+      const data = await readData(file);
       const asset = await this.$cloudinary.upload(data, {
-          ...options,
-          apiKey: this.$config.cloudinary.apiKey,
-          signature,
-      })
+        ...options,
+        apiKey: this.$config.cloudinary.apiKey,
+        signature,
+      });
 
-      this.$emit('file-uploaded', asset.public_id)
+      this.$emit("file-uploaded", asset.public_id);
     },
   },
 };

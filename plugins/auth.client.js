@@ -16,7 +16,7 @@ export default ({ $config, store }, inject) => {
   }
 
   function init() {
-    window.gapi.load("auth2", async function () {
+    window.gapi.load("auth2", async () => {
       const auth2 = await window.gapi.auth2.init({
         client_id: $config.auth.clientId,
       });

@@ -42,6 +42,7 @@ export default function (context, inject) {
     });
   }
 
+  // eslint-disable-next-line max-params
   function showMap(canvas, lat, lng, markers) {
     if (!mapLoaded) {
       waiting.push({

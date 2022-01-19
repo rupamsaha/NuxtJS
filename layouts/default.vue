@@ -8,10 +8,10 @@
       </div>
       <div class="app-search">
         <input
-          type="text"
           ref="citySearch"
-          @changed="changed"
+          type="text"
           placeholder="Enter your address"
+          @changed="changed"
         />
         <client-only>
           <template #placeholder>
@@ -24,19 +24,19 @@
             v-model="range"
             is-range
             timezone="UTC"
-            :modelConfig="{ timeAdjust: '00:00:00' }"
+            :model-config="{ timeAdjust: '00:00:00' }"
           >
-            <template v-slot="{ inputValue, inputEvents }">
+            <template #default="{ inputValue, inputEvents }">
               <input
                 :value="inputValue.start"
-                v-on="inputEvents.start"
                 class="datepicker"
+                v-on="inputEvents.start"
               />
               <span class="-ml-6 mr-2">to</span>
               <input
                 :value="inputValue.end"
-                v-on="inputEvents.end"
                 class="datepicker"
+                v-on="inputEvents.end"
               /><br />
             </template>
           </date-picker>
@@ -51,7 +51,7 @@
           <div class="name">Host</div>
           <img :src="user.profileUrl" class="avatar" />
         </template>
-        <div v-show="!isLoggedIn" id="googleButton" class="ml-8"></div>
+        <div v-show="!isLoggedIn" id="googleButton" class="ml-8" />
       </div>
     </header>
     <nuxt />
@@ -72,9 +72,6 @@ export default {
       },
     };
   },
-  mounted() {
-    this.$maps.makeAutoComplete(this.$refs.citySearch);
-  },
   computed: {
     user() {
       return this.$store.state.auth.user;
@@ -83,24 +80,31 @@ export default {
       return this.$store.state.auth.isLoggedIn;
     },
   },
+  mounted() {
+    this.$maps.makeAutoComplete(this.$refs.citySearch);
+  },
   methods: {
-    search(){
-      if(!this.location.label) return
+    search() {
+      if (!this.location.label) {
+        return;
+      }
       this.$router.push({
-          name: "search",
-          query: {
-            ...this.location,
-            start: this.range.start.getTime() / 1000,
-            end: this.range.end.getTime() / 1000,
-          },
-        })
+        name: "search",
+        query: {
+          ...this.location,
+          start: this.range.start.getTime() / 1000,
+          end: this.range.end.getTime() / 1000,
+        },
+      });
     },
     changed(event) {
       const place = event.detail;
-      if (!place.geometry) return;
-      this.location.lat = place.geometry.location.lat()
-      this.location.lng = place.geometry.location.lng()
-      this.location.label = this.$refs.citySearch.value
+      if (!place.geometry) {
+        return;
+      }
+      this.location.lat = place.geometry.location.lat();
+      this.location.lng = place.geometry.location.lng();
+      this.location.label = this.$refs.citySearch.value;
     },
   },
 };

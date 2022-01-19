@@ -8,7 +8,7 @@
         {{ home.location.state }}
         {{ home.location.country }}
       </p>
-      <div ref="map" class="app-map"></div>
+      <div ref="map" class="app-map" />
     </div>
   </div>
 </template>

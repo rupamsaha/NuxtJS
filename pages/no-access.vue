@@ -1,5 +1,3 @@
 <template>
-    <div>
-        Access Denied
-    </div>
+  <div>Access Denied</div>
 </template>

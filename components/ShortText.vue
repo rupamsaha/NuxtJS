@@ -1,59 +1,78 @@
 <template>
-    <span> {{ displayText }} 
-        <button v-if="isTooLong && !isExpanded" @click="isExpanded = true" class="link link-focus" type="button">read more</button>
-        <button v-if="isTooLong && isExpanded" @click="isExpanded = false" class="link link-focus" type="button">read less</button>
-    </span>
+  <span>
+    {{ displayText }}
+    <button
+      v-if="isTooLong && !isExpanded"
+      class="link link-focus"
+      type="button"
+      @click="isExpanded = true"
+    >
+      read more
+    </button>
+    <button
+      v-if="isTooLong && isExpanded"
+      class="link link-focus"
+      type="button"
+      @click="isExpanded = false"
+    >
+      read less
+    </button>
+  </span>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            isExpanded: false,
-            chunks: []
-        }
+  props: {
+    text: {
+      type: String,
+      required: true,
     },
-    props: {
-        text: {
-            type: String,
-            required: true,
-        },
-        target: {
-            type: Number,
-            required: true,
-        },
+    target: {
+      type: Number,
+      required: true,
     },
-    computed: {
-        isTooLong(){
-            return this.chunks.length === 2
-        },
-        displayText(){
-            if(!this.isTooLong || this.isExpanded) return this.chunks.join(' ')
-            return this.chunks[0] + '...'
-        }
+  },
+  data() {
+    return {
+      isExpanded: false,
+      chunks: [],
+    };
+  },
+  computed: {
+    isTooLong() {
+      return this.chunks.length === 2;
     },
-    created(){
-        this.chunks = this.getChunks()
+    displayText() {
+      if (!this.isTooLong || this.isExpanded) {
+        return this.chunks.join(" ");
+      }
+      return `${this.chunks[0]}...`;
     },
-    methods: {
-        getChunks(){
-            const position = this.text.indexOf(' ', this.target)
-            if(this.text.length <= this.target || position === -1) return [this.text]
-            return [this.text.substring(0, position), this.text.substring(position)]
-        }
-    }
-}
+  },
+  created() {
+    this.chunks = this.getChunks();
+  },
+  methods: {
+    getChunks() {
+      const position = this.text.indexOf(" ", this.target);
+      if (this.text.length <= this.target || position === -1) {
+        return [this.text];
+      }
+      return [this.text.substring(0, position), this.text.substring(position)];
+    },
+  },
+};
 </script>
 <style scoped>
 .link {
-    color: blue;
-    background: white;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer
+  color: blue;
+  background: white;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .link-focus {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 </style>

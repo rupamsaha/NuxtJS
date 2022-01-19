@@ -11,21 +11,25 @@ export default function () {
   this.nuxt.hook("render:setupMiddleware", (app) => {
     app.use("/admin", (req, res, next) => {
       res.spa = true;
-      next()
+      next();
     });
   });
 
   async function handler(req, res, next) {
     const idToken = cookie.parse(req.headers.cookie)[authConfig.cookieName];
-    if (!idToken) return rejectHit(res)
-    const ticket = await getUser(idToken)
-    if(!ticket) return rejectHit(res)
-    req.identity = {
-        id: ticket.sub,
-        email: ticket.email,
-        name: ticket.name,
-        image: ticket.picture,
+    if (!idToken) {
+      return rejectHit(res);
     }
+    const ticket = await getUser(idToken);
+    if (!ticket) {
+      return rejectHit(res);
+    }
+    req.identity = {
+      id: ticket.sub,
+      email: ticket.email,
+      name: ticket.name,
+      image: ticket.picture,
+    };
     next();
   }
 
@@ -43,7 +47,6 @@ export default function () {
   }
 
   function rejectHit(res) {
-      res.statusCode = 401,
-      res.end()
+    (res.statusCode = 401), res.end();
   }
 }

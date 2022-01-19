@@ -4,12 +4,18 @@
       <div class="app-double-column">
         <div class="app-padded-vertical">
           <h2 class="app-subtitle">Description</h2>
-          <div class="app-description">{{ home.description }}</div>
+          <div class="app-description">
+            {{ home.description }}
+          </div>
         </div>
         <div class="app-padded-vertical">
-            <div v-for="(feature, index) in home.features" :key=index class="app-tag">
-                {{feature}}
-            </div>
+          <div
+            v-for="(feature, index) in home.features"
+            :key="index"
+            class="app-tag"
+          >
+            {{ feature }}
+          </div>
         </div>
       </div>
     </div>
